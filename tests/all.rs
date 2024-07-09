@@ -14,4 +14,14 @@ mod tests {
     fn coprime_2num_test() {
         assert_eq!(rsassy::coprimes_2num(14, 6), [1, 5].into_iter().collect())
     }
+
+    #[test]
+    fn factors_test() {
+        assert_eq!(rsassy::factors(12, 15), [1, 3].into_iter().collect())
+    }
+
+    #[test]
+    fn factors_piff() {
+        println!("{:?}", rsassy::factors(14, 6));
+    }
 }

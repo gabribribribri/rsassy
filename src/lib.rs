@@ -45,8 +45,7 @@ pub fn coprimes_2num(n: u128, m: u128) -> HashSet<u128> {
 
 // factors of n
 pub fn factors(n: u128, m: u128) -> HashSet<u128> {
-    (1..=(n as f32).sqrt() as u128 + 1)
-        .filter(|x| n % x == 0 && m % x == 0)
-        .flat_map(|x| [x, m / x])
+    (1..=(std::cmp::max(n, m)) / 2 + 1)
+        .filter(|x| n % x == 0 || m % x == 0)
         .collect::<HashSet<u128>>()
 }
