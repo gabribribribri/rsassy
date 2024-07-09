@@ -36,20 +36,17 @@ fn coprimes_count(p: u128, q: u128) -> u128 {
 
 // return the number of numbers lesser than n that doesn't share a common factor with n
 pub fn coprimes_2num(n: u128, m: u128) -> HashSet<u128> {
-    let mut nfactors = factors(n);
-    nfactors.remove(&1);
-    let mut mfactors = factors(m);
-    mfactors.remove(&1);
+    let mut nmfactors = factors(n, m);
+    nmfactors.remove(&1);
     (1..=std::cmp::min(n, m))
-        .filter(|x| factors(*x).is_disjoint(&nfactors))
-        .filter(|x| factors(*x).is_disjoint(&mfactors))
+        .filter(|a| nmfactors.iter().all(|b| a % b != 0))
         .collect()
 }
 
 // factors of n
-pub fn factors(n: u128) -> HashSet<u128> {
+pub fn factors(n: u128, m: u128) -> HashSet<u128> {
     (1..=(n as f32).sqrt() as u128 + 1)
-        .filter(|x| n % x == 0)
-        .flat_map(|x| [x, n / x])
+        .filter(|x| n % x == 0 && m % x == 0)
+        .flat_map(|x| [x, m / x])
         .collect::<HashSet<u128>>()
 }

@@ -11,17 +11,7 @@ mod tests {
     }
 
     #[test]
-    fn factors_test() {
-        for i in 2..=100 {
-            // println!("{}: {:?}", i, rsassy::factors(i));
-        }
-    }
-
-    #[test]
     fn coprime_2num_test() {
-        assert_eq!(
-            rsassy::coprimes_2num(14, 6),
-            [1, 3, 5, 9, 11, 13].into_iter().collect()
-        )
+        assert_eq!(rsassy::coprimes_2num(14, 6), [1, 5].into_iter().collect())
     }
 }
